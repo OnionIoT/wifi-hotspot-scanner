@@ -46,3 +46,21 @@ def prepareDisplay(gps, networks, fieldLengths):
         screenOutput.append(entry)
         
     return screenOutput
+    
+# write wifi network data to csv
+def writeCsv(filename, gps, networks):
+    now = datetime.datetime.now()
+    date = now.strftime("%Y-%m-%d : %X")
+    csvHeaders = ["date", "latitude", "longitude", "ssid", "bssid", "encryption", "signalStrength"]
+    csvRows = []
+    for network in networks:
+        csvRows.append({
+            "date": now,
+            "latitude": gps["latitude"],
+            "longitude": gps["longitude"],
+            "ssid": network["ssid"],
+            "bssid": network["bssid"],
+            "encryption": network["encryption"],
+            "signalStrength": network["signalStrength"]
+        })
+    csv.write(filename, csvRows, csvHeaders)

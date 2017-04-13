@@ -30,18 +30,7 @@ def __main__():
         helpers.oled.writeLines(screenOutput)
         
         # append to csv
-        csvHeaders = ["date", "latitude", "longitude", "ssid", "bssid", "signalStrength"]
-        csvRows = []
-        for network in networks:
-            csvRows.append({
-                "date": "date",
-                "latitude": gps["latitude"],
-                "longitude", gps["longitude"],
-                "ssid": network["ssid"],
-                "bssid": network["bssid"],
-                "signalStrength": network["signalStrength"]
-            })
-        helpers.csv.write(filename, csvRows, csvHeaders)
+        helpers.writeCsv(filename, gps, networks)
         
         sleep(SCAN_INTERVAL)
     
