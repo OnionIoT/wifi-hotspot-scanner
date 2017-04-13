@@ -1,3 +1,7 @@
+# this program will periodically scan nearby wifi networks
+# it will display some of the networks with the strongest signal on the OLED Expansion
+# it will then append info from all detected networks to a csv file
+
 import helpers
 from time import sleep
 
