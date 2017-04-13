@@ -22,12 +22,11 @@ def __main__():
         gps = helpers.readGps()
         
         # write to screen
-        screenOutput = helpers.prepareDisplay( 
+        helpers.printWifiOled(
             gps, 
             sortedNetworks[:N_STRONGEST_NETWORKS], 
             fieldLengths
         )
-        helpers.oled.writeLines(screenOutput)
         
         # append to csv
         helpers.writeCsv(filename, gps, networks)

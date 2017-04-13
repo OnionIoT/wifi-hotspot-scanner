@@ -1,6 +1,7 @@
 import ubusHelper as ubus
 import oledHelper as oled
 import csvHelper as csv
+import shellHelper as shell
 import datetime
 import json
 
@@ -29,7 +30,7 @@ def sortNetworks(networks):
     )
 
 # build payload for display
-def prepareDisplay(gps, networks, fieldLengths):
+def printWifiOled(gps, networks, fieldLengths):
     # build a time header at the top of the screen
     timeHeader = buildDateTimeHeader()
     
@@ -45,7 +46,7 @@ def prepareDisplay(gps, networks, fieldLengths):
         entry = networks[i]["ssid"].ljust(fieldLengths["ssid"]) + (networks[i]["signalStrength"] + "%").rjust(fieldLengths["signalStrength"])
         screenOutput.append(entry)
         
-    return screenOutput
+    oled.writeLines(screenOutput)
     
 # write wifi network data to csv
 def writeCsv(filename, gps, networks):
