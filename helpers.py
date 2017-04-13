@@ -8,7 +8,7 @@ import json
 def scanWifi():
     device = json.dumps({"device": "ra0"})
     args = ["onion", "wifi-scan", device]
-    return ubus.call(args)
+    return ubus.call(args)["results"]
 
 # read the GPS expansion
 def readGps():

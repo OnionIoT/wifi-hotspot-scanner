@@ -15,7 +15,7 @@ filename = "./wifiData.csv"
 def __main__():
     while True:
         # scan the wifi networks and sort by signal strength
-        networks = helpers.scanWifi()["results"]
+        networks = helpers.scanWifi()
         sortedNetworks = helpers.sortNetworks(networks)
         
         # get thecurrent gps coordinates
@@ -32,6 +32,7 @@ def __main__():
         # append to csv
         helpers.writeCsv(filename, gps, networks)
         
+        # sleep
         sleep(SCAN_INTERVAL)
     
 if __name__ == '__main__':
