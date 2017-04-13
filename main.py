@@ -18,13 +18,13 @@ def __main__():
         networks = helpers.scanWifi()
         sortedNetworks = helpers.sortNetworks(networks)
         
-        # get thecurrent gps coordinates
+        # get the current gps coordinates
         gps = helpers.readGps()
         
         # write to screen
         helpers.printWifiOled(
-            gps, 
-            sortedNetworks[:N_STRONGEST_NETWORKS], 
+            gps,
+            sortedNetworks[:N_STRONGEST_NETWORKS],
             fieldLengths
         )
         

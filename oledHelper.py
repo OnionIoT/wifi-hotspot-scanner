@@ -1,3 +1,5 @@
+# oled expansion helper
+
 from OmegaExpansion import oledExp
 
 oledExp.driverInit()

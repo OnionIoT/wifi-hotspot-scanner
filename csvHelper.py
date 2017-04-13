@@ -1,3 +1,5 @@
+# csv handler for csvs with and without headers
+
 import csv
 import os
 
@@ -17,7 +19,7 @@ def write(filename, data, headers=None):
             if not fileExists:
                 writer.writeheader()
                 print "Wrote headers to " + filename
-        # else treat list elements as values
+        # else treat list elements as cells
         else:
             writer = csv.writer(file)
         
