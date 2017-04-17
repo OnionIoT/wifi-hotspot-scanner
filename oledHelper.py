@@ -5,8 +5,10 @@ from OmegaExpansion import oledExp
 oledExp.driverInit()
 oledExp.clear()
 
-def writeLines(lines, startingRow=0, startingColumn=0, printBlock=False):
+def clear():
+    oledExp.clear()
 
+def writeLines(lines, startingRow=0, startingColumn=0, printBlock=False):
     # set the cursor to the beginning of the row where you want to start printing
     oledExp.setCursor(startingRow, startingColumn)
     

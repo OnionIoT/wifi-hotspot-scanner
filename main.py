@@ -14,6 +14,10 @@ fieldLengths = {
     "gpsCoordinates": 9
 }
 
+errors = {
+    "gpsNotLocked": "GPS signal is not locked. The program will try again shortly."
+}
+
 filename = "./wifiData.csv"
 
 def __main__():
@@ -25,8 +29,14 @@ def __main__():
         # get the current gps coordinates
         gps = helpers.readGps()
         
+        # if the gps read was not successful, try again from the beginning
+        if not gps:
+            helpers.displayError(errors["gpsNotLocked"])
+            sleep(SCAN_INTERVAL)
+            continue
+        
         # write to screen
-        helpers.printWifiOled(
+        helpers.displayNetworks(
             gps,
             sortedNetworks[:N_STRONGEST_NETWORKS],
             fieldLengths

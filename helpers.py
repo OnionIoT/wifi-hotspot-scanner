@@ -16,7 +16,13 @@ def scanWifi():
 # returns a dictionary with gps info
 def readGps():
     args =["gps", "info"]
-    return ubus.call(args)
+    response = ubus.call(args)
+    
+    # check if the GPS is locked
+    if "signal" in response and response["signal"] == False:
+        return False
+    # else return the data
+    return response
 
 # build a date time header for the top of the screen
 # returns a string
@@ -35,7 +41,7 @@ def sortNetworks(networks):
 
 # print to the display
 # no return value
-def printWifiOled(gps, networks, fieldLengths):
+def displayNetworks(gps, networks, fieldLengths):
     # build a time header at the top of the screen
     timeHeader = buildDateTimeHeader()
     
@@ -50,9 +56,16 @@ def printWifiOled(gps, networks, fieldLengths):
     for i in range(0, len(networks)):
         entry = networks[i]["ssid"].ljust(fieldLengths["ssid"]) + (networks[i]["signalStrength"] + "%").rjust(fieldLengths["signalStrength"])
         screenOutput.append(entry)
-        
-    oled.writeLines(screenOutput)
     
+    oled.clear()    
+    oled.writeLines(screenOutput)
+
+# write error message
+def displayError(message):
+    screenOutput = ["ERROR", message]
+    oled.clear()
+    oled.writeLines(screenOutput)
+
 # write wifi network data to csv
 # no return value
 def writeCsv(filename, gps, networks):
