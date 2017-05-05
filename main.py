@@ -18,7 +18,9 @@ errors = {
     "gpsNotLocked": "GPS signal is not locked. The program will try again shortly."
 }
 
-filename = "./wifiData.csv"
+# get the directory where to save the csv file
+dirName = os.path.dirname(os.path.abspath(__file__))
+filename = '/'.join([dirName, 'wifiData.csv'])
 
 def __main__():
     while True:
