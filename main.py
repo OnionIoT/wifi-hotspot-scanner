@@ -2,6 +2,7 @@
 # it will display some of the networks with the strongest signal on the OLED Expansion
 # it will then append info from all detected networks to a csv file
 
+import os
 import helpers
 from time import sleep
 
